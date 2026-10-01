@@ -1,6 +1,6 @@
 import type { API, PlatformAccessory, Service } from 'homebridge';
 
-const TEST_ALERT_MS = 10_000;
+const TEST_ALERT_MS = 30_000;
 
 /** The "Baby Crying" motion sensor for one SNOO. */
 export class CryingSensor {

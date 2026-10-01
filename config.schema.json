@@ -65,7 +65,7 @@
       },
       "testAlertOnStartup": {
         "title": "Send a test alert when Homebridge starts",
-        "description": "Turns the sensor on for 10 seconds so you can check notifications. Turn it off afterwards.",
+        "description": "A minute after Homebridge starts, turns the sensor on for 30 seconds so you can check notifications. Turn it off afterwards.",
         "type": "boolean",
         "default": false,
         "required": false

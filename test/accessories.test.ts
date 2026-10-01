@@ -62,13 +62,14 @@ describe('CryingSensor', () => {
     expect(motion.updates).toEqual([]);
   });
 
-  it('shows a test alert for 10 seconds, then the real state', async () => {
+  it('shows a test alert for 30 seconds, then the real state', async () => {
     vi.useFakeTimers();
     const { sensor, motion } = setup();
     sensor.test();
     sensor.update(false);
+    await vi.advanceTimersByTimeAsync(29_000);
     expect(motion.updates).toEqual([true]);
-    await vi.advanceTimersByTimeAsync(10_000);
+    await vi.advanceTimersByTimeAsync(1_000);
     expect(motion.updates).toEqual([true, false]);
   });
 
@@ -77,7 +78,7 @@ describe('CryingSensor', () => {
     const { sensor, motion } = setup();
     sensor.test();
     sensor.update(true);
-    await vi.advanceTimersByTimeAsync(10_000);
+    await vi.advanceTimersByTimeAsync(30_000);
     expect(motion.updates).toEqual([true]);
   });
 });

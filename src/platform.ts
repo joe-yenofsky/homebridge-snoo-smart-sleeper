@@ -9,6 +9,9 @@ import { ensurePythonEnv } from './python.js';
 import { PLATFORM_NAME, PLUGIN_NAME, type SnooConfig } from './settings.js';
 
 const PYTHON_DIR = fileURLToPath(new URL('../python/', import.meta.url));
+// After a restart, home hubs take a little while to reconnect; an alert sent
+// before then never becomes a notification.
+const TEST_ALERT_DELAY_MS = 60_000;
 
 export class SnooPlatform implements DynamicPlatformPlugin {
   private readonly config: SnooConfig;
@@ -116,10 +119,14 @@ export class SnooPlatform implements DynamicPlatformPlugin {
 
     if (this.config.testAlertOnStartup && !this.testSent) {
       this.testSent = true;
-      this.log.info('Sending a test alert. Turn off "testAlertOnStartup" when you\'re done.');
-      for (const sensor of this.sensors.values()) {
-        sensor.test();
-      }
+      this.log.info('Test alert in %d s, once Home has reconnected. Turn off "testAlertOnStartup" when you\'re done.',
+        TEST_ALERT_DELAY_MS / 1000);
+      setTimeout(() => {
+        this.log.info('Sending a test alert.');
+        for (const sensor of this.sensors.values()) {
+          sensor.test();
+        }
+      }, TEST_ALERT_DELAY_MS);
     }
   }
 }

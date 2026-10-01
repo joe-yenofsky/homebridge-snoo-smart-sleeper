@@ -42,7 +42,7 @@ Config example:
 | `calmResetMinutes` | `5` | How long the SNOO must be calm before a spell ends. |
 | `pythonPath` | `python3` | A specific Python 3.11+ interpreter. |
 | `eventLog` | `false` | Write SNOO events to `snoo-smart-sleeper/events.jsonl` in the Homebridge folder. |
-| `testAlertOnStartup` | `false` | Turn the sensor on for 10 seconds at startup, to test notifications. |
+| `testAlertOnStartup` | `false` | A minute after startup, turn the sensor on for 30 seconds to test notifications. |
 
 ## Ideas for automations
 
