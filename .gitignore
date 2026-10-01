@@ -1,0 +1,14 @@
+# Node
+node_modules/
+dist/
+*.tgz
+
+# Python
+__pycache__/
+.venv/
+
+# Setup scripts for one specific Homebridge host; not part of the plugin.
+pi-setup/
+
+# macOS
+.DS_Store

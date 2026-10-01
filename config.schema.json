@@ -1,0 +1,75 @@
+{
+  "pluginAlias": "SnooSmartSleeper",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "Adds a **Baby Crying** sensor to Apple Home for each SNOO on your Happiest Baby account. It turns on when your SNOO hears crying. Needs Python 3.11 or newer on the Homebridge machine.",
+  "footerDisplay": "Unofficial, and not affiliated with Happiest Baby. Not a safety device.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "SNOO",
+        "required": false
+      },
+      "email": {
+        "title": "Happiest Baby email",
+        "type": "string",
+        "format": "email",
+        "required": true
+      },
+      "password": {
+        "title": "Happiest Baby password",
+        "type": "string",
+        "required": true,
+        "x-schema-form": {
+          "type": "password"
+        }
+      },
+      "accessoryName": {
+        "title": "Sensor name",
+        "type": "string",
+        "default": "Baby Crying",
+        "required": false
+      },
+      "cryingDelaySeconds": {
+        "title": "Only alert after this many seconds of crying (advanced)",
+        "description": "0 alerts at the first cry.",
+        "type": "integer",
+        "default": 0,
+        "minimum": 0,
+        "maximum": 1800,
+        "required": false
+      },
+      "calmResetMinutes": {
+        "title": "Minutes of calm that end a crying spell (advanced)",
+        "type": "integer",
+        "default": 5,
+        "minimum": 1,
+        "maximum": 60,
+        "required": false
+      },
+      "pythonPath": {
+        "title": "Python interpreter (advanced)",
+        "description": "Leave empty to use python3 from the PATH.",
+        "type": "string",
+        "placeholder": "python3",
+        "required": false
+      },
+      "eventLog": {
+        "title": "Log SNOO events to a file in the Homebridge folder (advanced)",
+        "type": "boolean",
+        "default": false,
+        "required": false
+      },
+      "testAlertOnStartup": {
+        "title": "Send a test alert when Homebridge starts",
+        "description": "Turns the sensor on for 10 seconds so you can check notifications. Turn it off afterwards.",
+        "type": "boolean",
+        "default": false,
+        "required": false
+      }
+    }
+  }
+}

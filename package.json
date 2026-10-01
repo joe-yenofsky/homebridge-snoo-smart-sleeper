@@ -1,0 +1,55 @@
+{
+  "name": "homebridge-snoo-smart-sleeper",
+  "displayName": "SNOO Smart Sleeper",
+  "version": "0.1.0",
+  "description": "Apple Home alerts when your SNOO Smart Sleeper hears your baby cry.",
+  "license": "MIT",
+  "author": "joe-yenofsky",
+  "homepage": "https://github.com/joe-yenofsky/homebridge-snoo-smart-sleeper#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joe-yenofsky/homebridge-snoo-smart-sleeper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joe-yenofsky/homebridge-snoo-smart-sleeper/issues"
+  },
+  "keywords": [
+    "homebridge-plugin",
+    "homebridge",
+    "homekit",
+    "snoo",
+    "happiest-baby",
+    "bassinet",
+    "baby-monitor"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "python/*.py",
+    "python/requirements.txt",
+    "config.schema.json",
+    "README.md"
+  ],
+  "engines": {
+    "node": "^22 || ^24 || ^26",
+    "homebridge": "^1.8.0 || ^2.0.0"
+  },
+  "scripts": {
+    "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && tsc",
+    "lint": "eslint src test",
+    "test": "vitest run",
+    "test:python": "python3 -m unittest discover -s test/python",
+    "check": "python3 python/snoo_helper.py --check",
+    "prepublishOnly": "npm run lint && npm run build && npm test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.4",
+    "eslint": "^10.11.0",
+    "homebridge": "^2.4.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^5.0.3"
+  }
+}
